@@ -50,7 +50,8 @@ func anim_change():
     flash.play('flash')
     
 func _on_adapt_rom_toggled(toggled_on: bool) -> void:
-    if toggled_on:
-        adapt_toggle = true
-    else:
-        adapt_toggle = false
+     if toggled_on and not GlobalSignals.assessment_done:
+        flappy._button_nodes.adapt_prom.button_pressed = false
+        flappy._ui_nodes.warning_window.visible = true
+        return
+     adapt_toggle = false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8kibkoxvs38w"
-path="res://.godot/imported/GameBg.png-09ecfd8759e8d231ad984021d0cf7f9c.ctex"
+uid="uid://bx2vn83hkvqpi"
+path="res://.godot/imported/fruit_basket.png-8526332c40dfa268661c6951f7418ab0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Games/fruit_catcher/assets/GameBg.png"
-dest_files=["res://.godot/imported/GameBg.png-09ecfd8759e8d231ad984021d0cf7f9c.ctex"]
+source_file="res://Games/fruit_catcher/assets/fruit_basket.png"
+dest_files=["res://.godot/imported/fruit_basket.png-8526332c40dfa268661c6951f7418ab0.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://7nr2tlykv2n5"]
 
 [ext_resource type="Script" uid="uid://bxjnhknp5qmc4" path="res://Games/flappy_bird/Scripts/game_over.gd" id="1_uusqj"]
-[ext_resource type="FontFile" uid="uid://bnbrhy3ui4hcs" path="res://Games/Jumpify/art/ui/fonts/Bungee-Regular.ttf" id="2_y2x4k"]
+[ext_resource type="FontFile" uid="uid://b54m8n1w2ouio" path="res://Assets/Fonts/Bungee-Regular.ttf" id="2_y2x4k"]
 
 [node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_uusqj")

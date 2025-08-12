@@ -39,7 +39,8 @@ signal game_started
     "game_over_label": $CanvasLayer/GameOverLabel,
     "time_label": $CanvasLayer/TimerSelectorPanel/TimeSelector,
     "top_score_label": $CanvasLayer/TextureRect/TopScoreLabel,
-    "mode_selection": $ModeSelection
+    "mode_selection": $ModeSelection,
+    "warning_window":$Window
 }
 
 @onready var _panel_nodes = {
@@ -58,7 +59,10 @@ signal game_started
     "logout_button": $CanvasLayer/GameOverLabel/LogoutButton,
     "retry_button": $CanvasLayer/GameOverLabel/RetryButton,
     "2d_mode": $"ModeSelection/2D_mode",
-    "3d_mode": $"ModeSelection/3D_mode"
+    "3d_mode": $"ModeSelection/3D_mode",
+    "do_assess":$Window/HBoxContainer/do_asses,
+    "close_assess":$Window/HBoxContainer/close_asses,
+    "adapt_prom":$AdaptRom
         
 }
 
@@ -459,3 +463,11 @@ func _on_3d_mode_pressed() -> void:
     _ui_nodes.mode_selection.hide()
     print("3d pressed")
     
+
+
+func _on_do_asses_pressed() -> void:
+    get_tree().change_scene_to_file("res://Games/assessment/workspace.tscn")
+
+
+func _on_close_asses_pressed() -> void:
+    _ui_nodes.warning_window.visible = false

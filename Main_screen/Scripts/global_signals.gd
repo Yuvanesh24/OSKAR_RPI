@@ -6,6 +6,7 @@ signal SignalBus
 @export var affected_hand: String = ""
 @export var global_scalar_x:float = 1.0
 @export var global_scalar_y:float = 1.0
+@export var assessment_done: bool = false
 
 @export var inflated_workspace: PackedVector2Array
 
