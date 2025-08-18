@@ -228,6 +228,7 @@ func _update_position_tracking() -> void:
             # 2D adaptive mode: Y is 0, Z calculated with scaling
             game_y = 0.0
             game_z = (position.y - GlobalScript.Y_SCREEN_OFFSET) / (GlobalScript.PLAYER_POS_SCALER_Z * GlobalSignals.global_scalar_y)
+
        
 func _update_sprite_direction() -> void:
     if current_apple != null:
@@ -287,7 +288,8 @@ func _update_target_position(apple_position: Vector2) -> void:
         # 2D mode: apple Y position maps to target_z, target_y is 0
         target_y = 0.0
         target_z = (apple_position.y - GlobalScript.Y_SCREEN_OFFSET) / GlobalScript.PLAYER_POS_SCALER_Z
-
+        
+        
 func _update_timer_display() -> void:
     if current_apple != null:
         var remaining_time = round(_timer_nodes.my_timer.time_left)
@@ -350,16 +352,13 @@ func _show_timer_buttons() -> void:
 func _setup_game_logging() -> void:
     log_timer.timeout.connect(_on_log_timer_timeout)
     
-    # Determine game name based on mode
-    var log_game_name = "RandomReach3D" if is_3d_mode else "RandomReach"
-    
-    game_log_file = Manager.create_game_log_file(log_game_name, GlobalSignals.current_patient_id)
+    # Use the updated game_name variable
+    game_log_file = Manager.create_game_log_file(game_name, GlobalSignals.current_patient_id)
     game_log_file.store_csv_line(PackedStringArray([
         'epochtime', 'score', 'status', 'error_status', 'packets', 
         'device_x', 'device_y', 'device_z', 'target_x', 'target_y', 'target_z',
         'player_x', 'player_y', 'player_z', 'pause_state'
     ]))
-
 
 func _on_PauseButton_pressed() -> void:
     if is_paused:
@@ -438,6 +437,7 @@ func _on_log_timer_timeout() -> void:
             str(pos_x), str(pos_y), str(pos_z), str(target_x), str(target_y), str(target_z),
             str(game_x), str(game_y), str(game_z), str(pause_state)
         ]))
+
         
 func _on_reach_game_ready() -> void:
     rom_x_top = 20
@@ -510,12 +510,18 @@ func _on_dummy_timeout() -> void:
 
 func _on_2d_mode_pressed() -> void:
     is_3d_mode = false
+    _update_game_name()  # Update game name
     _ui_nodes.mode_selection.hide()
     game_started = true
+
 func _on_3d_mode_pressed() -> void:
-    is_3d_mode = true 
+    is_3d_mode = true
+    _update_game_name()  # Update game name
     _ui_nodes.mode_selection.hide()
     game_started = true
+    
+func _update_game_name() -> void:
+    game_name = "RandomReach3D" if is_3d_mode else "RandomReach"
 
 
 func _on_do_asses_pressed() -> void:

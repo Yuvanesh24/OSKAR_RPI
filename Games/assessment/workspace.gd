@@ -101,6 +101,7 @@ func parse_and_calculate_area(polygon_str: String) -> float:
     area = abs(area) * 0.5
     return area
 func _ready():
+    GlobalSignals.assessment_done = false
     # Generate 100 random points for demonstration
     for i in range(100):
         active_workspace.append(Vector2(randi() % 400 + 350, randi() % 400 + 200))
@@ -324,6 +325,7 @@ func _on_enter_pressed() -> void:
     var prom_size = get_aabb(inflated_workspace).size
     GlobalSignals.global_scalar_x = get_viewport_rect().size.x /prom_size.x 
     GlobalSignals.global_scalar_y = get_viewport_rect().size.y /prom_size.y
+    GlobalSignals.assessment_done = true
     $SaveDialogBox.show()
     
     # GlobalSignals.current_patient_id

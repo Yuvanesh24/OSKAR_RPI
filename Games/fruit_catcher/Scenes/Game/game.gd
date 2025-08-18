@@ -5,6 +5,7 @@ const GEM = preload("res://Games/fruit_catcher/Scenes/Fruits/fruit.tscn")
 const MARGIN: float = 70.0
 var START_OF_SCREEN_X: float
 var END_OF_SCREEN_X: float
+var adapt_toggle: bool = false
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var paddle: Area2D = $Paddle
@@ -13,6 +14,21 @@ var END_OF_SCREEN_X: float
 @onready var score_label: Label = $ScoreLabel
 @onready var dark_overlay: ColorRect = $DarkOverlay
 @onready var game_over_label: Label = $GameOverLabel
+
+
+@onready var _button_nodes = {
+    "play_button": $TimerSelectorPanel/VBoxContainer/HBoxContainer/PlayButton,
+    "close_button": $TimerSelectorPanel/VBoxContainer/HBoxContainer/CloseButton,
+    "retry_button": $"../TileMap/CanvasLayer/ColorRect/GameOverLabel/RetryButton",
+    "add_one_btn": $TimerSelectorPanel/HBoxContainer/AddOneButton,
+    "add_five_btn": $TimerSelectorPanel/HBoxContainer/AddFiveButton,
+    "sub_one_btn": $TimerSelectorPanel/HBoxContainer2/SubOneButton,
+    "sub_five_btn": $TimerSelectorPanel/HBoxContainer2/SubFiveButton,
+    "close_assess": $"../Window/HBoxContainer/close_asses",
+    "do_assess": $"../Window/HBoxContainer/do_asses",
+    "adapt_prom": $AdaptProm,
+    "warning_window": $Window
+}
 
 var _score: int = 0
 var current_gem: Gem = null  
@@ -90,9 +106,25 @@ func _on_paddle_area_entered(area: Area2D) -> void:
         
         # Spawn next gem after a short delay
         await get_tree().create_timer(0.5).timeout
-        spawn_gem()
+        spawn_gem()  
 
 
 func _on_logout_button_pressed() -> void:
     get_tree().paused = false
     get_tree().change_scene_to_file("res://Main_screen/Scenes/select_game.tscn")
+
+
+func _on_do_asses_pressed() -> void:
+    get_tree().change_scene_to_file("res://Games/assessment/workspace.tscn")
+
+
+func _on_close_asses_pressed() -> void:
+    _button_nodes.warning_window.visible = false
+
+
+func _on_adapt_prom_toggled(toggled_on: bool) -> void:
+    if toggled_on and not GlobalSignals.assessment_done:
+        _button_nodes.adapt_prom.button_pressed = false
+        _button_nodes.warning_window.visible = true
+        return
+    adapt_toggle = toggled_on
