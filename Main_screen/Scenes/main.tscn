@@ -1434,13 +1434,15 @@ script = ExtResource("3_54gjo")
 
 [node name="Window" type="Window" parent="."]
 initial_position = 1
-size = Vector2i(500, 210)
+size = Vector2i(650, 210)
 visible = false
 
 [node name="Label" type="Label" parent="Window"]
+offset_left = 16.0
 offset_top = 44.0
-offset_right = 504.0
+offset_right = 633.0
 offset_bottom = 139.0
+theme_override_fonts/font = ExtResource("4_oasjk")
 theme_override_font_sizes/font_size = 17
 text = "  Please make sure you have entered the correct Hospital ID.
 
@@ -1462,6 +1464,7 @@ offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("4_oasjk")
 text = "OK"
 
 [node name="patient_notfound" type="Window" parent="."]
@@ -1470,8 +1473,11 @@ size = Vector2i(300, 100)
 visible = false
 
 [node name="Label" type="Label" parent="patient_notfound"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 64.0
+offset_top = 16.0
+offset_right = 238.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("4_oasjk")
 text = "Patient not found"
 
 [node name="patient_nf_ok" type="Button" parent="patient_notfound"]
@@ -1479,6 +1485,7 @@ offset_left = 100.0
 offset_top = 50.0
 offset_right = 200.0
 offset_bottom = 81.0
+theme_override_fonts/font = ExtResource("4_oasjk")
 text = "Ok"
 
 [node name="Label" type="Label" parent="."]

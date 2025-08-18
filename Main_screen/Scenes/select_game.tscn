@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=4 uid="uid://w7m2uhyqp1ir"]
+[gd_scene load_steps=18 format=4 uid="uid://w7m2uhyqp1ir"]
 
 [ext_resource type="Script" uid="uid://l80o1fuw3l58" path="res://Main_screen/Scripts/select_game.gd" id="1_ghqbc"]
 [ext_resource type="VideoStream" uid="uid://8jyvye72a65e" path="res://Assets/gifs/Hello.ogv" id="2_fliu1"]
 [ext_resource type="FontFile" uid="uid://26gpa7mi2g8w" path="res://Assets/Fonts/HeavyDataNerdFont-Regular.ttf" id="2_h1wm0"]
 [ext_resource type="Theme" uid="uid://b07twninll6cv" path="res://addons/new_theme.tres" id="4_r2fws"]
+[ext_resource type="FontFile" uid="uid://b54m8n1w2ouio" path="res://Assets/Fonts/Bungee-Regular.ttf" id="5_fliu1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5h02n"]
 font = ExtResource("2_h1wm0")
@@ -1553,10 +1554,10 @@ text = "     Fruit catcher     "
 [node name="HandSelectionPopup" type="Panel" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 354.0
-offset_top = 313.0
-offset_right = 749.0
-offset_bottom = 502.0
+offset_left = 351.0
+offset_top = 373.0
+offset_right = 790.0
+offset_bottom = 568.0
 
 [node name="Label" type="Label" parent="HandSelectionPopup"]
 layout_mode = 0
@@ -1564,23 +1565,26 @@ offset_left = 27.0
 offset_top = 48.0
 offset_right = 352.0
 offset_bottom = 76.0
+theme_override_fonts/font = ExtResource("5_fliu1")
 theme_override_font_sizes/font_size = 20
 text = "Which hand do you want to train?"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HandSelectionPopup"]
 layout_mode = 0
-offset_left = 94.0
+offset_left = 110.0
 offset_top = 97.0
-offset_right = 287.0
+offset_right = 361.0
 offset_bottom = 136.0
-theme_override_constants/separation = 15
+theme_override_constants/separation = 30
 
 [node name="LeftButton" type="Button" parent="HandSelectionPopup/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_fliu1")
 text = "Left Hand"
 
 [node name="RightButton" type="Button" parent="HandSelectionPopup/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_fliu1")
 text = "Right Hand"
 
 [connection signal="pressed" from="game_reach" to="." method="_on_game_reach_pressed"]

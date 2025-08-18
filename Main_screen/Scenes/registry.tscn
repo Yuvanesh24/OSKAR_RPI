@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dna3kovngiew3"]
+[gd_scene load_steps=7 format=3 uid="uid://dna3kovngiew3"]
 
 [ext_resource type="Script" uid="uid://ckiph54obfh1t" path="res://Main_screen/Scripts/registry.gd" id="1_tjqgy"]
 [ext_resource type="Texture2D" uid="uid://s48uvbgatc0w" path="res://Assets/Background/Pink.png" id="2_tjqgy"]
+[ext_resource type="FontFile" uid="uid://b54m8n1w2ouio" path="res://Assets/Fonts/Bungee-Regular.ttf" id="3_m584y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sax6"]
 bg_color = Color(0.22736, 0.641662, 0.870024, 1)
@@ -322,6 +323,7 @@ offset_top = 30.0
 offset_right = 60.5
 offset_bottom = 80.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_m584y")
 text = "Do you want to login as:
 "
 
@@ -331,6 +333,7 @@ offset_left = 100.0
 offset_top = 58.0
 offset_right = 207.0
 offset_bottom = 88.0
+theme_override_fonts/font = ExtResource("3_m584y")
 horizontal_alignment = 1
 
 [node name="login_button" type="Button" parent="TextureRect/LoginSelectPatient"]
@@ -340,11 +343,12 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -100.0
-offset_top = -42.0
+offset_top = -58.0
 offset_right = -10.0
-offset_bottom = -11.0
+offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_m584y")
 text = "Login"
 
 [node name="cancel" type="Button" parent="TextureRect/LoginSelectPatient"]
@@ -354,11 +358,12 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 20.0
-offset_top = -42.0
+offset_top = -58.0
 offset_right = 110.0
-offset_bottom = -11.0
+offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_m584y")
 text = "Cancel"
 
 [node name="AdditionalComments" type="TextEdit" parent="TextureRect"]

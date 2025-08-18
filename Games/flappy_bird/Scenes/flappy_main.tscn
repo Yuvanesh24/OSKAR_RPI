@@ -322,7 +322,6 @@ theme_override_font_sizes/font_size = 25
 text = "Time left:"
 
 [node name="GameOverLabel" type="Label" parent="CanvasLayer"]
-visible = false
 offset_left = 496.0
 offset_top = 272.0
 offset_right = 684.0
@@ -330,6 +329,7 @@ offset_bottom = 314.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.914062, 0.914062, 0.914062, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_m56p3")
 theme_override_font_sizes/font_size = 30
 text = "GAME OVER !"
 
@@ -339,6 +339,7 @@ offset_left = -17.0
 offset_top = 56.0
 offset_right = 81.0
 offset_bottom = 95.0
+theme_override_fonts/font = ExtResource("7_m56p3")
 text = "⬅️ Logout"
 
 [node name="RetryButton" type="Button" parent="CanvasLayer/GameOverLabel"]
@@ -347,6 +348,7 @@ offset_left = 104.0
 offset_top = 56.0
 offset_right = 208.0
 offset_bottom = 95.0
+theme_override_fonts/font = ExtResource("7_m56p3")
 text = "🔄:Retry"
 
 [node name="PauseButton" type="Button" parent="CanvasLayer"]
@@ -371,6 +373,7 @@ offset_left = 15.0
 offset_top = 16.0
 offset_right = 49.0
 offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("7_m56p3")
 horizontal_alignment = 1
 
 [node name="ApplePic" type="Panel" parent="."]
@@ -437,6 +440,7 @@ theme_override_font_sizes/font_size = 25
 text = "0"
 
 [node name="ModeSelection" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 453.0
 offset_top = 274.0
