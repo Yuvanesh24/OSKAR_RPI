@@ -322,6 +322,7 @@ theme_override_font_sizes/font_size = 25
 text = "Time left:"
 
 [node name="GameOverLabel" type="Label" parent="CanvasLayer"]
+visible = false
 offset_left = 496.0
 offset_top = 272.0
 offset_right = 684.0
@@ -440,7 +441,6 @@ theme_override_font_sizes/font_size = 25
 text = "0"
 
 [node name="ModeSelection" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 453.0
 offset_top = 274.0
