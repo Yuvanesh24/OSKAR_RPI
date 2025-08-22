@@ -17,6 +17,8 @@ var MAX_X_VALUE: float
 # Settings
 @onready var adapt_toggle: bool = false
 @onready var debug_mode = DebugSettings.debug_mode
+@onready var game: Node2D = $".."
+
 
 func _ready() -> void:
     print("Paddle:: _ready")
@@ -72,6 +74,9 @@ func _update_paddle_position() -> void:
     position.x = clampf(position.x, MIN_X_VALUE, MAX_X_VALUE)
     position.y = 615.0
 
-# Optional: Toggle adapt mode
-func _on_adapt_toggled(toggled_on: bool) -> void:
+func _on_adapt_prom_toggled(toggled_on: bool) -> void:
+    if toggled_on and not GlobalSignals.assessment_done:
+        game._button_nodes.adapt_prom.button_pressed = false
+        game._button_nodes.warning_window.visible = true
+        return
     adapt_toggle = toggled_on

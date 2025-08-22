@@ -25,7 +25,6 @@ var missed_gems := 0
 # Timer and countdown
 var countdown_time: int = 0
 var countdown_active: bool = false
-var adapt_toggle: bool = false
 
 # Position tracking for logging
 var paddle_x: float = 0.0
@@ -71,7 +70,7 @@ var log_timer: Timer
     "sub_five_btn": $TimerSelectorPanel/HBoxContainer2/SubFiveButton,
     "close_assess":$Window/HBoxContainer/close_asses,
     "do_assess": $Window/HBoxContainer/do_asses,
-    "adapt_prom": $AdaptProm,
+    "adapt_prom":$AdaptProm,
     "warning_window": $Window
 }
 
@@ -443,21 +442,12 @@ func _on_do_asses_pressed() -> void:
 func _on_close_asses_pressed() -> void:
     _button_nodes.warning_window.visible = false
 
-func _on_adapt_prom_toggled(toggled_on: bool) -> void:
-    if toggled_on and not GlobalSignals.assessment_done:
-        _button_nodes.adapt_prom.button_pressed = false
-        _button_nodes.warning_window.visible = true
-        return
-    adapt_toggle = toggled_on
-    paddle.adapt_toggle = toggled_on
 
-# Cleanup on exit
 func _notification(what: int) -> void:
     if what == NOTIFICATION_WM_CLOSE_REQUEST:
         if game_log_file:
             game_log_file.close()
         get_tree().quit()
-
 
 func _on_gameover_logout_pressed() -> void:
     get_tree().paused = false
