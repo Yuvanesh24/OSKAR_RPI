@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://co33yn52kaeqb" path="res://Assets/health_and_pointers_bar/Sprites/Heart Bar/Heart Stage 5.png" id="8_oja8t"]
 [ext_resource type="PackedScene" uid="uid://7nr2tlykv2n5" path="res://Games/flappy_bird/Scenes/game_over.tscn" id="9_wgnds"]
 [ext_resource type="Script" uid="uid://nqypnx6hl2qj" path="res://Games/flappy_bird/Scripts/timer_label.gd" id="10_7qyl5"]
-[ext_resource type="Texture2D" uid="uid://5ows6ytbrmdg" path="res://Assets/scoring_system/Background.png" id="11_hp4h5"]
+[ext_resource type="Texture2D" uid="uid://chno14wxf5g0e" path="res://Assets/scoring_system/Background.png" id="11_hp4h5"]
 [ext_resource type="Theme" uid="uid://b07twninll6cv" path="res://addons/new_theme.tres" id="12_0goge"]
 [ext_resource type="Texture2D" uid="uid://b1ifscbhf76bo" path="res://Assets/scoring_system/medal.webp" id="13_8iopb"]
 [ext_resource type="Texture2D" uid="uid://h2ss1trfuva0" path="res://Assets/flappy_assets/bg.png" id="16_m56p3"]

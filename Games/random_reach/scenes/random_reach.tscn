@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=4 uid="uid://dcremoelo5qoc"]
+[gd_scene load_steps=32 format=4 uid="uid://dcremoelo5qoc"]
 
-[ext_resource type="Texture2D" uid="uid://gg6ifqkacfba" path="res://Assets/Background/SheepBG.png" id="1_v066f"]
+[ext_resource type="Texture2D" uid="uid://bxc0p8vtk7acc" path="res://Assets/Background/SheepBG-min-2.png" id="1_v066f"]
 [ext_resource type="PackedScene" uid="uid://ciht5nisjgbqp" path="res://Games/random_reach/scenes/player.tscn" id="2_7fnnd"]
+[ext_resource type="Texture2D" uid="uid://bngcn6oh2q8e8" path="res://Assets/Background/grass-2.png" id="2_o6ju6"]
 [ext_resource type="Texture2D" uid="uid://cwqtv62nto34u" path="res://Assets/Terrian/Terrain (16x16).png" id="3_o6ju6"]
-[ext_resource type="Texture2D" uid="uid://5ows6ytbrmdg" path="res://Assets/scoring_system/Background.png" id="5_j2tbw"]
+[ext_resource type="Texture2D" uid="uid://chno14wxf5g0e" path="res://Assets/scoring_system/Background.png" id="5_j2tbw"]
 [ext_resource type="Theme" uid="uid://b07twninll6cv" path="res://addons/new_theme.tres" id="7_xn8jd"]
 [ext_resource type="Texture2D" uid="uid://b1ifscbhf76bo" path="res://Assets/scoring_system/medal.webp" id="8_3vvhp"]
 [ext_resource type="PackedScene" uid="uid://c6bg6bhe2v1e3" path="res://Games/random_reach/scenes/home_pos.tscn" id="9_72q7b"]
@@ -1685,7 +1686,16 @@ scale = Vector2(1.00219, 1.01418)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="3DRR" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 1132.0
+offset_bottom = 626.0
+texture = ExtResource("1_v066f")
+expand_mode = 1
+
+[node name="2DRR" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1695,7 +1705,7 @@ offset_left = -7.98252
 offset_right = -7.98254
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_v066f")
+texture = ExtResource("2_o6ju6")
 expand_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_7fnnd")]
@@ -1885,10 +1895,10 @@ texture = ExtResource("8_3vvhp")
 expand_mode = 1
 
 [node name="TopScoreLabel" type="Label" parent="TileMap/CanvasLayer"]
-offset_left = 928.0
-offset_top = 101.0
-offset_right = 1096.0
-offset_bottom = 137.0
+offset_left = 910.0
+offset_top = 93.0
+offset_right = 1072.0
+offset_bottom = 127.0
 theme_override_colors/font_color = Color(0.093652, 0.0986456, 0.123497, 1)
 theme_override_fonts/font = SubResource("FontFile_o1ivk")
 theme_override_font_sizes/font_size = 25

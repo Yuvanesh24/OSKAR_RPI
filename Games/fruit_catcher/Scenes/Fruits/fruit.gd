@@ -4,7 +4,7 @@ class_name Gem
 const INITIAL_SPEED: float = 200.0 
 var END_OF_SCREEN_Y: float
 signal gem_off_screen
-
+signal gem_collected  # Restored - might be needed for scoring/game logic
 static var gem_count: int = 0
 
 # Directory containing fruit images
@@ -13,17 +13,19 @@ const FRUITS_DIR = "res://Games/fruit_catcher/assets/fruits/"
 static var fruit_textures: Array[Texture2D] = []
 static var textures_loaded: bool = false
 
-func _init() -> void:
-    print("Gem:: _init")
+# References to both nodes
+@onready var sprite: Sprite2D = get_node("Sprite2D")
+@onready var animated_sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
 
-func _enter_tree() -> void:
-    print("Gem:: _enter_tree")
+var is_collected: bool = false  # Flag to prevent multiple collections
 
 func _ready() -> void:
-    print("Gem:: _ready")
     gem_count += 1
-    print("gem_count = ", gem_count)
     END_OF_SCREEN_Y = get_viewport_rect().end.y
+    
+    # Hide the animated sprite initially (show only the fruit sprite)
+    if animated_sprite:
+        animated_sprite.visible = false
     
     # Load textures only once
     if not textures_loaded:
@@ -42,21 +44,15 @@ func load_fruit_textures() -> void:
         var texture = load(texture_path) as Texture2D
         if texture:
             fruit_textures.append(texture)
-            print("Loaded texture: ", file_name)
     
     textures_loaded = true
-    print("Loaded ", fruit_textures.size(), " fruit textures")
 
 func set_random_fruit_texture() -> void:
     """Set a random fruit texture from the cached textures"""
     if fruit_textures.size() > 0:
-        var sprite = get_node("Sprite2D") as Sprite2D
         if sprite:
             var random_index = randi() % fruit_textures.size()
             sprite.texture = fruit_textures[random_index]
-            print("Set random fruit texture, index: ", random_index)
-    else:
-        print("No fruit textures available!")
 
 func get_fruit_files() -> Array[String]:
     var fruit_files: Array[String] = []
@@ -74,24 +70,53 @@ func get_fruit_files() -> Array[String]:
         
         dir.list_dir_end()
     else:
-        print("Failed to access directory: ", FRUITS_DIR)
+        push_error("Failed to access directory: " + FRUITS_DIR)
     
     return fruit_files
 
 func die() -> void:
     set_process(false)
-    gem_count -= 1  # Decrement counter to prevent memory leak
-    print("Gem died, remaining gems: ", gem_count)
+    gem_count -= 1
     queue_free()
 
 func _process(delta: float) -> void:
+    # Don't move if collected (during animation)
+    if is_collected:
+        return
+        
     position.y += INITIAL_SPEED * delta
     
     if position.y > END_OF_SCREEN_Y:
-        print("Gem fell out of screen")
         gem_off_screen.emit()
         die()
 
 func _on_area_entered(area: Area2D) -> void:
-    print("Gem hits paddle")
-    die()
+    # Check if it's the player/paddle and not already collected
+    if area.name == "Player" or area.name == "Paddle" and not is_collected:
+        collect_gem()
+
+func collect_gem() -> void:
+    """Handle gem collection with animation"""
+    if is_collected:
+        return  # Prevent multiple collections
+    
+    is_collected = true
+    set_process(false)  # Stop movement
+    
+    # Emit collection signal for game logic (scoring, etc.)
+    gem_collected.emit()
+    
+    # Hide the fruit sprite and show the animation sprite
+    if sprite:
+        sprite.visible = false
+    if animated_sprite:
+        animated_sprite.visible = true
+    
+    # Play collection animation if AnimatedSprite2D exists and has "collected" animation
+    if animated_sprite and animated_sprite.sprite_frames and animated_sprite.sprite_frames.has_animation("collected"):
+        animated_sprite.play("collected")
+        await animated_sprite.animation_finished
+    
+    # Clean up - decrement counter since we're not calling die()
+    gem_count -= 1
+    queue_free()
