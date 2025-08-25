@@ -28,7 +28,7 @@ SoundFx="*res://Main_screen/Scenes/SoundFx.tscn"
 GlobalTimer="*res://Main_screen/Scripts/global_timer.gd"
 ScoreManager="*res://Main_screen/Scripts/score_manager.gd"
 DebugSettings="*res://Main_screen/Scripts/debug_settings.gd"
-GameManager2="*res://Games/Jumpify/Scripts/GameManager.gd"
+GameManager="res://Games/Jumpify/Scripts/GameManager.gd"
 AudioManager="*res://Games/Jumpify/Scenes/Managers/AudioManager.tscn"
 SceneTransition="*res://Games/Jumpify/Scenes/Managers/SceneTransition.tscn"
 

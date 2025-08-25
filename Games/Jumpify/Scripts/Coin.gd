@@ -57,8 +57,8 @@ func reset_coin_properties():
 func _on_body_entered(body):
     if body.is_in_group("Player2D"):
         AudioManager.coin_pickup_sfx.play()
-        GameManager2.add_score()
+        body.on_coin_collected()  # This calls the new scoring function
         var tween = create_tween()
         tween.tween_property(self, "scale", Vector2.ZERO, 0.1)
         await tween.finished
-        spawn_new_coin() # Spawn new coin immediately after collection
+        spawn_new_coin()

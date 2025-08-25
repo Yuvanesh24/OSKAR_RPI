@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dcremoelo5qoc"]
+[gd_scene load_steps=31 format=4 uid="uid://dcremoelo5qoc"]
 
 [ext_resource type="Texture2D" uid="uid://bxc0p8vtk7acc" path="res://Assets/Background/SheepBG-min-2.png" id="1_v066f"]
 [ext_resource type="PackedScene" uid="uid://ciht5nisjgbqp" path="res://Games/random_reach/scenes/player.tscn" id="2_7fnnd"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://cklorvnyyai30" path="res://Games/random_reach/Sprites/AppleStatic.png" id="10_kaukv"]
 [ext_resource type="AudioStream" uid="uid://bn4wpjscqoj8b" path="res://Games/random_reach/Sprites/apple_eating1.mp3" id="11_0aj7a"]
 [ext_resource type="FontFile" uid="uid://b54m8n1w2ouio" path="res://Assets/Fonts/Bungee-Regular.ttf" id="11_7fnnd"]
-[ext_resource type="Texture2D" uid="uid://h2ss1trfuva0" path="res://Assets/flappy_assets/bg.png" id="11_v066f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fipgi"]
 texture = ExtResource("3_o6ju6")
@@ -2114,11 +2113,10 @@ flat = true
 
 [node name="ModeSelection" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 448.019
-offset_top = 237.63
-offset_right = 654.019
-offset_bottom = 380.63
-texture = ExtResource("11_v066f")
+offset_left = 448.615
+offset_top = 238.0
+offset_right = 658.615
+offset_bottom = 381.0
 expand_mode = 1
 
 [node name="2D_mode" type="Button" parent="ModeSelection"]

@@ -1,8 +1,13 @@
 extends Control
-
 @onready var score_texture = %Score/ScoreTexture
 @onready var score_label = %Score/ScoreLabel
 
+var player_node: Node
+
+func _ready():
+    # Find the player node (adjust path as needed)
+    player_node = $"../../Player" # Adjust this path to your player
+    
 func _process(_delta):
-    # Set the score label text to the score variable in game maanger script
-    score_label.text = "x %d" % GameManager2.score
+    if player_node:
+        score_label.text = "x %d" % player_node.score

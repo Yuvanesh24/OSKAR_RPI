@@ -156,8 +156,6 @@ func _connect_signals() -> void:
     _button_nodes.sub_five_btn.pressed.connect(_on_sub_five_pressed)
     _button_nodes.logout_button.pressed.connect(_on_logout_button_pressed)
     _button_nodes.retry_button.pressed.connect(_on_retry_button_pressed)
-    #_button_nodes["2d_mode"].pressed.connect(_on_2d_mode_pressed)
-    #_button_nodes["3d_mode"].pressed.connect(_on_3d_mode_pressed)
     _panel_nodes.pause_button.pressed.connect(_on_PauseButton_pressed)
     
     

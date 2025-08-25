@@ -2,11 +2,26 @@
 
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Games/Jumpify/Scenes/Prefabs/player.tscn" id="2_lpo2y"]
 [ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Games/Jumpify/Scenes/Prefabs/Coin.tscn" id="3_nht2m"]
-[ext_resource type="Script" uid="uid://g6oa1rfikatd" path="res://Games/Jumpify/Scripts/GameManager.gd" id="4_ndpt4"]
 [ext_resource type="Texture2D" uid="uid://jaegp53ccc7w" path="res://Games/Jumpify/Assets/Spritesheet/platformPack_tilesheet.png" id="5_8107p"]
 [ext_resource type="Script" uid="uid://domyi75bwl5ad" path="res://Games/Jumpify/Scripts/GameUI.gd" id="6_um0jo"]
 [ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Games/Jumpify/Assets/platformPack_item008.png" id="7_ns8o6"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Games/Jumpify/Assets/Fonts/Star Choco.ttf" id="8_doswy"]
+
+[sub_resource type="GDScript" id="GDScript_mjfas"]
+script/source = "## This script is an autoload, that can be accessed from any other script!
+#
+#extends Node2D
+#
+#var score : int = 0
+#
+## Adds 1 to score variable
+#func add_score():
+    #score += 1
+#
+## Loads next level
+#func load_next_level(next_scene : PackedScene):
+    #get_tree().change_scene_to_packed(next_scene)
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rndpx"]
 texture = ExtResource("5_8107p")
@@ -76,7 +91,7 @@ position = Vector2(864, 353)
 position = Vector2(1131, 398)
 
 [node name="GameManager" type="Node2D" parent="."]
-script = ExtResource("4_ndpt4")
+script = SubResource("GDScript_mjfas")
 
 [node name="Level" type="Node2D" parent="."]
 
