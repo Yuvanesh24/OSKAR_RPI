@@ -33,8 +33,9 @@ func coin_hover(delta):
 func handle_spawn_timer(delta):
 	spawn_timer += delta
 	if spawn_timer >= spawn_interval:
+		coin_missed.emit()  # This line was missing!
 		spawn_new_coin()
-
+		
 # Spawn coin at random location
 func spawn_coin():
 	var random_x = randf_range(spawn_x_min, spawn_x_max)

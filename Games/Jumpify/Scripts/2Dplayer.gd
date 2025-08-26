@@ -34,6 +34,11 @@ var is_paused = false
 var pause_state = 1
 var adapt_toggle: bool = false
 
+# Status tracking variables
+var coin_collected_timer = 0.0
+var coin_missed_timer = 0.0
+var status_hold_duration = 0.5  # Hold special status for 0.5 seconds
+
 # Position tracking variables
 var pos_x: float
 var pos_y: float
@@ -43,7 +48,7 @@ var game_y = 0.0
 var game_z: float
 
 # Game logging variables
-var status := "idle"
+var status := "moving"
 var error_status = "null"
 var packets = "null"
 var patient_id = GlobalSignals.current_patient_id
@@ -126,9 +131,25 @@ func _setup_ui() -> void:
 func _connect_signals() -> void:
 	# Timer connections
 	_timer_nodes.countdown_timer.timeout.connect(_on_countdown_timer_timeout)
-	var coin = $"../Coin"
-	if coin:
-		coin.coin_missed.connect(_on_coin_missed)
+	
+	# Debug: Try multiple possible coin paths
+	var possible_paths = ["../Coin", "Coin", "../coin", "coin", "../Coin2D"]
+	var coin_found = false
+	
+	for path in possible_paths:
+		var coin = get_node_or_null(path)
+		if coin:
+			coin.coin_missed.connect(_on_coin_missed)
+			print("✓ Coin signal connected at path: ", path)
+			coin_found = true
+			break
+	
+	if not coin_found:
+		print("✗ ERROR: Could not find coin node. Available children:")
+		var parent = get_parent()
+		if parent:
+			for child in parent.get_children():
+				print("  - ", child.name, " (", child.get_class(), ")")
 	
 func _initialize_game_state() -> void:
 	network_position = Vector2.ZERO
@@ -142,6 +163,7 @@ func _physics_process(delta):
 	if game_started and not is_paused:
 		_update_player_position()
 		_update_animations()
+		_update_status_based_on_timers(delta)
 		_update_timer_display()
 
 func _update_player_position() -> void:
@@ -178,29 +200,38 @@ func _update_position_tracking() -> void:
 	if not adapt_toggle:
 		# Standard mode calculations for Jumpify (2D mode)
 		game_x = (position.x - GlobalScript.X_SCREEN_OFFSET) / GlobalScript.PLAYER_POS_SCALER_X
-		game_y = (position.y - GlobalScript.Y_SCREEN_OFFSET3D) / GlobalScript.PLAYER3D_POS_SCALER_Y
-		game_z = 0.0
+		game_y = 0.0  # Jumpify is primarily 2D
+		game_z = (position.y - GlobalScript.Y_SCREEN_OFFSET) / GlobalScript.PLAYER_POS_SCALER_Z
 	else:
 		# Adaptive mode calculations
 		game_x = (position.x - GlobalScript.X_SCREEN_OFFSET) / (GlobalScript.PLAYER_POS_SCALER_X * GlobalSignals.global_scalar_x)
-		game_y = (position.y - GlobalScript.Y_SCREEN_OFFSET3D) / (GlobalScript.PLAYER3D_POS_SCALER_Y * GlobalSignals.global_scalar_y)
-		game_z = 0.0
+		game_y = 0.0
+		game_z = (position.y - GlobalScript.Y_SCREEN_OFFSET) / (GlobalScript.PLAYER_POS_SCALER_Z * GlobalSignals.global_scalar_y)
+
+# Handle status with timers - no coin.gd changes needed
+func _update_status_based_on_timers(delta):
+	# Update timers
+	if coin_collected_timer > 0:
+		coin_collected_timer -= delta
+		status = "collected"
+		return
+	
+	if coin_missed_timer > 0:
+		coin_missed_timer -= delta
+		status = "missed"
+		return
+	
+	# Default to moving
+	status = "moving"
 
 func _update_animations():
 	# Calculate movement based on position changes
 	var position_diff = position - previous_position
-	var is_moving = position_diff.length() > 2.0  # Increased threshold to prevent jittering
+	var is_moving = position_diff.length() > 1.0
 	
 	# Only update direction if movement is significant enough
-	if abs(position_diff.x) > 3.0:  # Only change direction for meaningful horizontal movement
+	if abs(position_diff.x) > 2.0:
 		last_movement_direction = sign(position_diff.x)
-	
-	# Update status for logging
-	if game_started:
-		if is_moving:
-			status = "moving"
-		else:
-			status = "idle"
 	
 	# Animation logic - check if player is above ground level
 	if position.y < ground_level - 10:
@@ -219,7 +250,7 @@ func _update_animations():
 		if particle_trails:
 			particle_trails.emitting = false
 	
-	# Flip sprite based on last significant movement direction (prevents constant flipping)
+	# Flip sprite based on last significant movement direction
 	if abs(last_movement_direction) > 0 and player_sprite:
 		if last_movement_direction < 0:
 			player_sprite.flip_h = true
@@ -303,7 +334,6 @@ func _update_timer_display() -> void:
 	if countdown_active:
 		var minutes = countdown_time / 60
 		var seconds = countdown_time % 60
-		#_ui_nodes.time_display.text = "%02d:%02d" % [minutes, seconds]
 
 # Pause System
 func _on_pause_button_pressed() -> void:
@@ -337,6 +367,16 @@ func add_score(points: int = 1) -> void:
 		ScoreManager.update_top_score(patient_id, game_name, score)
 		_update_top_score_display()
 
+# Coin event handlers
+func _on_coin_missed() -> void:
+	coin_missed_timer = status_hold_duration
+	print("🔴 COIN MISSED - timer started: ", coin_missed_timer)
+
+func on_coin_collected() -> void:
+	add_score(1)
+	coin_collected_timer = status_hold_duration
+	print("🟢 COIN COLLECTED - timer started: ", coin_collected_timer)
+
 # Game Over and Restart
 func show_game_over() -> void:
 	GlobalTimer.stop_timer()
@@ -361,7 +401,7 @@ func _on_retry_button_pressed() -> void:
 	_ui_nodes.score_board.text = "Score: 0"
 	game_over = false
 	countdown_time = 0
-	status = "idle"
+	status = "moving"
 
 # Adaptive ROM System
 func _on_adapt_rom_toggled(toggled_on: bool) -> void:
@@ -416,11 +456,3 @@ func _notification(what) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		if game_log_file:
 			game_log_file.close()
-
-# Public function for coin collection to call
-func on_coin_collected() -> void:
-	add_score(1)
-	status = "collected"
-	
-func _on_coin_missed() -> void :
-	status = "missed"
