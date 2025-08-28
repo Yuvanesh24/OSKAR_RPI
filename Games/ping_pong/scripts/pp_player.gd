@@ -63,7 +63,7 @@ var game_log_file
 
 # UI Labels
 @onready var countdown_display: Label = $"../CanvasLayer/CountdownLabel"
-@onready var time_label: Label = $"../CanvasLayer/TimeSelector"
+@onready var time_label: Label = $"../CanvasLayer/TimerSelectorPanel/TimeSelector"
 @onready var top_score_label: Label = $"../CanvasLayer/TextureRect/TopScoreLabel"
 @onready var warning_window: Window = $"../Window"
 @onready var adapt_prom: Button = $"../AdaptRom"

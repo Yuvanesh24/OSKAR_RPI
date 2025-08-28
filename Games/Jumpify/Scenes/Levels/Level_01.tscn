@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=4 uid="uid://cjanwm3sy2x37"]
+[gd_scene load_steps=31 format=4 uid="uid://cjanwm3sy2x37"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Games/Jumpify/Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
+[ext_resource type="Texture2D" uid="uid://dq0fpat00ukhu" path="res://Assets/Background/Space.jpg" id="1_t1ylk"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Games/Jumpify/Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Games/Jumpify/Scenes/Prefabs/player.tscn" id="2_pay8t"]
 [ext_resource type="Texture2D" uid="uid://jaegp53ccc7w" path="res://Games/Jumpify/Assets/Spritesheet/platformPack_tilesheet.png" id="5_wqbaa"]
@@ -1498,6 +1499,7 @@ cache/0/25/1/glyphs/228/texture_idx = 0
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1153.0
 offset_bottom = 577.0
+texture = ExtResource("1_t1ylk")
 expand_mode = 1
 
 [node name="LevelFinishDoor" parent="." instance=ExtResource("1_oqkjg")]
@@ -1543,12 +1545,11 @@ script = ExtResource("6_66mfc")
 [node name="CountdownTimer" type="Timer" parent="UserInterface/GameUI"]
 
 [node name="CountdownLabel" type="Label" parent="UserInterface/GameUI"]
-visible = false
 layout_mode = 0
-offset_left = 435.0
-offset_top = 58.0
-offset_right = 638.0
-offset_bottom = 92.0
+offset_left = 462.0
+offset_top = 68.0
+offset_right = 665.0
+offset_bottom = 102.0
 theme_override_colors/font_color = Color(0.93408, 0.93408, 0.93408, 1)
 theme_override_fonts/font = ExtResource("9_uy5mx")
 theme_override_font_sizes/font_size = 25
@@ -1742,10 +1743,10 @@ text = "ADAPT PROM"
 
 [node name="TopScoreLabel" type="Label" parent="UserInterface/GameUI"]
 layout_mode = 0
-offset_left = 1010.0
-offset_top = 39.0
-offset_right = 1066.0
-offset_bottom = 73.0
+offset_left = 1026.0
+offset_top = 47.0
+offset_right = 1155.0
+offset_bottom = 81.0
 theme_override_fonts/font = ExtResource("9_uy5mx")
 
 [node name="Window" type="Window" parent="UserInterface/GameUI"]
