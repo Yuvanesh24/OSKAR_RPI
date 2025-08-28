@@ -98,33 +98,27 @@ func _ready():
     thread_network.start(network_thread)
     
 
-    print(MAX_X, " " + str(MAX_Y))
-    
-#   2D Game offsets  
-    X_SCREEN_OFFSET = int(screen_size.x/4)
-    Y_SCREEN_OFFSET = int(screen_size.y/4)
-    
-#    3D Game offsets
-    Y_SCREEN_OFFSET3D = int(screen_size.y/1.75)
-
-    
-    message_timer.autostart = true
-    message_timer.wait_time = delay_time
-    message_timer.one_shot = false
-    message_timer.timeout.connect(send_dummy_packet)
-    add_child(message_timer)
-    GlobalSignals.SignalBus.connect(handle_quit_request)
-    get_tree().set_auto_accept_quit(false)
-    
-    if OS.get_name() == "Windows":
-        pyscript_path = "E:\\CMC\\pyprojects\\programs_rpi\\rpi_python\\stream_optimize.py"
-        pypath_checker_path = "E:\\CMC\\pyprojects\\programs_rpi\\rpi_python\\file_integrity.py"
-        interpreter_path = "E:\\CMC\\py_env\\venv\\Scripts\\python.exe"
-    else:
-        pyscript_path = "/home/sujith/Documents/rpi_python/stream_optimize.py"
-        pypath_checker_path = "/home/sujith/Documents/rpi_python/file_integrity.py"
-        interpreter_path = "/home/sujith/Documents/rpi_python/venv/bin/python"
-    
+	print(MAX_X, " " + str(MAX_Y))
+	X_SCREEN_OFFSET = int(screen_size.x/4)
+	Y_SCREEN_OFFSET = int(screen_size.y/4)
+	
+	message_timer.autostart = true
+	message_timer.wait_time = delay_time
+	message_timer.one_shot = false
+	message_timer.timeout.connect(send_dummy_packet)
+	add_child(message_timer)
+	GlobalSignals.SignalBus.connect(handle_quit_request)
+	get_tree().set_auto_accept_quit(false)
+	
+	if OS.get_name() == "Windows":
+		pyscript_path = "E:\\CMC\\pyprojects\\programs_rpi\\rpi_python\\stream_optimize.py"
+		pypath_checker_path = "E:\\CMC\\pyprojects\\programs_rpi\\rpi_python\\file_integrity.py"
+		interpreter_path = "E:\\CMC\\py_env\\venv\\Scripts\\python.exe"
+	else:
+		pyscript_path = "/home/sujith/Documents/programs/stream_optimize.py"
+		pypath_checker_path = "/home/sujith/Documents/programs/file_integrity.py"
+		interpreter_path = "/home/sujith/Documents/programs/venv/bin/python"
+	
 func _process(_delta: float) -> void:
     if not thread_python.is_alive() and not endgame and not debug:
         thread_python = Thread.new()
@@ -154,9 +148,8 @@ func network_thread():
         if disconnected:
             break
 func handle_quit_request():
-    _outgoing_message = "STOP"
-    print("Camera closed properly")
-    udp.put_packet(_outgoing_message.to_utf8_buffer())
+	_outgoing_message = "STOP"
+	udp.put_packet(_outgoing_message.to_utf8_buffer())
 
 func handle_udp_packet():
     var packet = udp.get_packet()
@@ -164,26 +157,20 @@ func handle_udp_packet():
 
     udp.put_packet(_outgoing_message.to_utf8_buffer())
 
-    _incoming_message = my_floats[0]
-    
-    raw_x = my_floats[1]
-    raw_y = my_floats[2]
-    raw_z = my_floats[3]
-    net_x = my_floats[1]*PLAYER_POS_SCALER_X + X_SCREEN_OFFSET
-    net_y = my_floats[2]*PLAYER3D_POS_SCALER_Y + Y_SCREEN_OFFSET3D
-    net_z = my_floats[3]*PLAYER_POS_SCALER_Z + Y_SCREEN_OFFSET
- 
-    network_position = Vector2(net_x, net_z)
-    network_position3D = Vector2(net_x, net_y)
-    
-    scaled_x = my_floats[1]*PLAYER_POS_SCALER_X * GlobalSignals.global_scalar_x + X_SCREEN_OFFSET
-    scaled_y = my_floats[2]*PLAYER3D_POS_SCALER_Y * GlobalSignals.global_scalar_y + Y_SCREEN_OFFSET3D
-    scaled_z = my_floats[3]*PLAYER_POS_SCALER_Z * GlobalSignals.global_scalar_y + Y_SCREEN_OFFSET
-    
-    scaled_network_position = Vector2(scaled_x, scaled_z)
-    scaled_network_position3D = Vector2(scaled_x, scaled_y)
-    
-    
+	_incoming_message = my_floats[0]
+	
+	raw_x = my_floats[1]
+	raw_y = my_floats[2]
+	raw_z = my_floats[3]
+	net_x = my_floats[1]*PLAYER_POS_SCALER_X + X_SCREEN_OFFSET
+	net_y = my_floats[2]*PLAYER_POS_SCALER_Y + Y_SCREEN_OFFSET
+	net_z = my_floats[3]*PLAYER_POS_SCALER_Y + Y_SCREEN_OFFSET
+	network_position = Vector2(net_x, net_z)
+	scaled_x = my_floats[1]*PLAYER_POS_SCALER_X * GlobalSignals.global_scalar_x + X_SCREEN_OFFSET
+	scaled_y = my_floats[2]*PLAYER_POS_SCALER_Y * GlobalSignals.global_scalar_y + Y_SCREEN_OFFSET
+	scaled_z = my_floats[3]*PLAYER_POS_SCALER_Y * GlobalSignals.global_scalar_y + Y_SCREEN_OFFSET
+	scaled_network_position = Vector2(scaled_x, scaled_z)
+	
 func change_patient():
     _outgoing_message = 'USER:' + patient_db.current_patient_id
 

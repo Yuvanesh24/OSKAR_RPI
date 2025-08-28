@@ -66,6 +66,9 @@ func _on_game_flappy_pressed() -> void:
 func _on_game_pingpong_pressed() -> void:
     get_tree().change_scene_to_packed(pingpong_scene)
 
+func _on_game_spaceshooter_pressed() -> void:
+	get_tree().change_scene_to_packed(space_shooter_scene)
+
 func _on_assessment_pressed() -> void:
     get_tree().change_scene_to_packed(assessment_scene)
 
@@ -73,18 +76,11 @@ func _on_results_pressed() -> void:
     get_tree().change_scene_to_packed(results_scene)
 
 func _on_logout_pressed() -> void:
-    GlobalSignals.selected_training_hand == ""
-    GlobalSignals.affected_hand = ""
-    get_tree().change_scene_to_file("res://Main_screen/Scenes/main.tscn")
-    
+	GlobalSignals.selected_training_hand == ""
+	GlobalSignals.affected_hand = ""
+	get_tree().change_scene_to_packed(main_menu_scene)
+	
 func _on_exit_button_pressed() -> void:
-    GlobalScript._notification(NOTIFICATION_WM_CLOSE_REQUEST)
-    GlobalSignals.selected_training_hand == ""
-    GlobalSignals.affected_hand = ""
-    get_tree().quit()
-
-func _on_platformer_pressed() -> void:
-    get_tree().change_scene_to_packed(jumpify)
-
-func _on_fruit_catcher_pressed() -> void:
-    get_tree().change_scene_to_packed(fruit_catcher)
+	GlobalSignals.selected_training_hand == ""
+	GlobalSignals.affected_hand = ""
+	get_tree().quit()
