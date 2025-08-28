@@ -74,8 +74,8 @@ script = ExtResource("1_w5ee0")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-0.666666, 0.666667)
-scale = Vector2(0.324174, 0.231884)
+position = Vector2(-0.666667, -0.166665)
+scale = Vector2(0.286458, 0.361979)
 sprite_frames = SubResource("SpriteFrames_dlft7")
 animation = &"sheep"
 frame = 4

@@ -47,7 +47,6 @@ var log_timer: Timer
 @onready var score_sound: AudioStreamPlayer2D = $ScoreSound
 @onready var sound: AudioStreamPlayer = $Sound
 @onready var score_label: Label = $ScoreLabel
-@onready var dark_overlay: ColorRect = $DarkOverlay
 @onready var game_over_label: ColorRect = $ColorRect
 
 # Timer UI nodes
@@ -63,7 +62,7 @@ var log_timer: Timer
     "close_button": $TimerSelectorPanel/VBoxContainer/HBoxContainer/CloseButton,
     "pause_button": $PauseButton,
     "retry_button": $ColorRect/GameOverLabel/RetryButton,
-    "logout_button": $ColorRect/GameOverLabel/LogoutButton,
+    "logout_button": $TileMap/CanvasLayer/ColorRect/GameOverLabel/LogoutButton,
     "add_one_btn": $TimerSelectorPanel/HBoxContainer/AddOneButton,
     "add_five_btn": $TimerSelectorPanel/HBoxContainer/AddFiveButton,
     "sub_one_btn": $TimerSelectorPanel/HBoxContainer2/SubOneButton,

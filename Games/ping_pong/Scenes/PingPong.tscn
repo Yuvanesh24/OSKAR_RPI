@@ -1671,6 +1671,7 @@ offset_bottom = 438.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_heaje")
 
 [node name="TimeSelector" type="Label" parent="CanvasLayer/TimerSelectorPanel"]
+layout_mode = 0
 offset_left = 142.0
 offset_top = 113.0
 offset_right = 184.0

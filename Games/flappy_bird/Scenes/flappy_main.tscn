@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://fj2c6cebl8pk"]
+[gd_scene load_steps=21 format=3 uid="uid://fj2c6cebl8pk"]
 
 [ext_resource type="Script" uid="uid://cplymo30m4t22" path="res://Games/flappy_bird/Scripts/flappy_main.gd" id="1_ahv5j"]
 [ext_resource type="PackedScene" uid="uid://cd76jpqxb0eqo" path="res://Games/flappy_bird/Scenes/ground.tscn" id="2_lkjn6"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://chno14wxf5g0e" path="res://Assets/scoring_system/Background.png" id="11_hp4h5"]
 [ext_resource type="Theme" uid="uid://b07twninll6cv" path="res://addons/new_theme.tres" id="12_0goge"]
 [ext_resource type="Texture2D" uid="uid://b1ifscbhf76bo" path="res://Assets/scoring_system/medal.webp" id="13_8iopb"]
-[ext_resource type="Texture2D" uid="uid://h2ss1trfuva0" path="res://Assets/flappy_assets/bg.png" id="16_m56p3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovamc"]
 bg_color = Color(0.254902, 0.752941, 1, 1)
@@ -446,18 +445,18 @@ offset_left = 453.0
 offset_top = 274.0
 offset_right = 674.0
 offset_bottom = 400.0
-texture = ExtResource("16_m56p3")
+texture = ExtResource("11_hp4h5")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="ModeSelection"]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 21.0
-offset_right = 210.0
-offset_bottom = 55.0
-theme_override_colors/font_color = Color(0.197937, 0.197937, 0.197937, 1)
+offset_left = 34.0
+offset_top = 31.0
+offset_right = 190.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_m56p3")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Select mode !"
 
 [node name="2D_mode" type="Button" parent="ModeSelection"]
