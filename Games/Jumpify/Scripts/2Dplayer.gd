@@ -47,6 +47,11 @@ var game_x: float
 var game_y = 0.0
 var game_z: float
 
+# Coin tracking variables - NEW - Direct node reference
+@onready var coin_node: Area2D = $"../Coin"  # Direct path to your coin
+var coin_target_x: float = 0.0
+var coin_target_z: float = 0.0
+
 # Game logging variables
 var status := "moving"
 var error_status = "null"
@@ -132,24 +137,12 @@ func _connect_signals() -> void:
     # Timer connections
     _timer_nodes.countdown_timer.timeout.connect(_on_countdown_timer_timeout)
     
-    # Debug: Try multiple possible coin paths
-    var possible_paths = ["../Coin", "Coin", "../coin", "coin", "../Coin2D"]
-    var coin_found = false
-    
-    for path in possible_paths:
-        var coin = get_node_or_null(path)
-        if coin:
-            coin.coin_missed.connect(_on_coin_missed)
-            print("✓ Coin signal connected at path: ", path)
-            coin_found = true
-            break
-    
-    if not coin_found:
-        print("✗ ERROR: Could not find coin node. Available children:")
-        var parent = get_parent()
-        if parent:
-            for child in parent.get_children():
-                print("  - ", child.name, " (", child.get_class(), ")")
+    # Connect coin signal - now using direct node reference
+    if coin_node:
+        coin_node.coin_missed.connect(_on_coin_missed)
+        print("✓ Coin signal connected successfully")
+    else:
+        print("✗ ERROR: Coin node not found - check the path in @onready var coin_node")
     
 func _initialize_game_state() -> void:
     network_position = Vector2.ZERO
@@ -165,6 +158,25 @@ func _physics_process(delta):
         _update_animations()
         _update_status_based_on_timers(delta)
         _update_timer_display()
+        _update_coin_target_position()  # NEW: Update coin target tracking
+
+# NEW: Function to update coin target position for logging
+func _update_coin_target_position() -> void:
+    if coin_node and is_instance_valid(coin_node):
+        var coin_pos = coin_node.position
+        
+        if not adapt_toggle:
+            # Standard mode calculations - convert coin position to game coordinates
+            coin_target_x = (coin_pos.x - GlobalScript.X_SCREEN_OFFSET) / GlobalScript.PLAYER_POS_SCALER_X
+            coin_target_z = (coin_pos.y - GlobalScript.Y_SCREEN_OFFSET) / GlobalScript.PLAYER_POS_SCALER_Z
+        else:
+            # Adaptive mode calculations - convert coin position to game coordinates
+            coin_target_x = (coin_pos.x - GlobalScript.X_SCREEN_OFFSET) / (GlobalScript.PLAYER_POS_SCALER_X * GlobalSignals.global_scalar_x)
+            coin_target_z = (coin_pos.y - GlobalScript.Y_SCREEN_OFFSET) / (GlobalScript.PLAYER_POS_SCALER_Z * GlobalSignals.global_scalar_y)
+    else:
+        # If coin node is invalid, use player position as fallback
+        coin_target_x = game_x
+        coin_target_z = game_z
 
 func _update_player_position() -> void:
     # Store previous position for animation calculations
@@ -435,10 +447,10 @@ func save_final_score_to_log(final_score: int) -> void:
 
 func _on_log_timer_timeout() -> void:
     if game_log_file and not debug:
-        # For Jumpify, we don't have specific targets, so we use current position as target
-        var target_x = game_x
-        var target_y = game_y  
-        var target_z = game_z
+        # FIXED: Now using actual coin position as target
+        var target_x = coin_target_x
+        var target_y = 0.0  # Jumpify is 2D, so target_y is always 0
+        var target_z = coin_target_z
         
         game_log_file.store_csv_line(PackedStringArray([
             Time.get_unix_time_from_system(), score, status, error_status, packets,
