@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://7nr2tlykv2n5" path="res://Games/flappy_bird/Scenes/game_over.tscn" id="9_wgnds"]
 [ext_resource type="Script" uid="uid://nqypnx6hl2qj" path="res://Games/flappy_bird/Scripts/timer_label.gd" id="10_7qyl5"]
 [ext_resource type="Texture2D" uid="uid://chno14wxf5g0e" path="res://Assets/scoring_system/Background.png" id="11_hp4h5"]
-[ext_resource type="Theme" uid="uid://b07twninll6cv" path="res://addons/new_theme.tres" id="12_0goge"]
+[ext_resource type="Theme" uid="uid://b431cc7xowdav" path="res://addons/new_theme.tres" id="12_0goge"]
 [ext_resource type="Texture2D" uid="uid://b1ifscbhf76bo" path="res://Assets/scoring_system/medal.webp" id="13_8iopb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovamc"]
@@ -439,44 +439,6 @@ theme_override_fonts/font = ExtResource("7_m56p3")
 theme_override_font_sizes/font_size = 25
 text = "0"
 
-[node name="ModeSelection" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 453.0
-offset_top = 274.0
-offset_right = 674.0
-offset_bottom = 400.0
-texture = ExtResource("11_hp4h5")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="ModeSelection"]
-layout_mode = 0
-offset_left = 34.0
-offset_top = 31.0
-offset_right = 190.0
-offset_bottom = 65.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("7_m56p3")
-theme_override_font_sizes/font_size = 20
-text = "Select mode !"
-
-[node name="2D_mode" type="Button" parent="ModeSelection"]
-layout_mode = 0
-offset_left = 33.0
-offset_top = 69.0
-offset_right = 96.0
-offset_bottom = 100.0
-theme_override_fonts/font = ExtResource("7_m56p3")
-text = "2D"
-
-[node name="3D_mode" type="Button" parent="ModeSelection"]
-layout_mode = 0
-offset_left = 116.0
-offset_top = 69.0
-offset_right = 181.0
-offset_bottom = 100.0
-theme_override_fonts/font = ExtResource("7_m56p3")
-text = "3D"
-
 [node name="Window" type="Window" parent="."]
 auto_translate_mode = 1
 initial_position = 2
@@ -515,7 +477,5 @@ text = "Close"
 [connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
 [connection signal="pressed" from="logout" to="." method="_on_logout_pressed"]
 [connection signal="toggled" from="AdaptRom" to="pilot" method="_on_adapt_rom_toggled"]
-[connection signal="pressed" from="ModeSelection/2D_mode" to="." method="_on_2d_mode_pressed"]
-[connection signal="pressed" from="ModeSelection/3D_mode" to="." method="_on_3d_mode_pressed"]
 [connection signal="pressed" from="Window/HBoxContainer/do_asses" to="." method="_on_do_asses_pressed"]
 [connection signal="pressed" from="Window/HBoxContainer/close_asses" to="." method="_on_close_asses_pressed"]

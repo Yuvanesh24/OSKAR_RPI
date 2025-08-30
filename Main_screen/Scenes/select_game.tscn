@@ -1,16 +1,9 @@
-[gd_scene load_steps=17 format=4 uid="uid://w7m2uhyqp1ir"]
+[gd_scene load_steps=16 format=4 uid="uid://w7m2uhyqp1ir"]
 
 [ext_resource type="Script" uid="uid://l80o1fuw3l58" path="res://Main_screen/Scripts/select_game.gd" id="1_ghqbc"]
 [ext_resource type="VideoStream" path="res://Assets/gifs/Hello.ogv" id="2_fliu1"]
-[ext_resource type="Theme" uid="uid://b07twninll6cv" path="res://addons/new_theme.tres" id="4_r2fws"]
+[ext_resource type="Theme" uid="uid://b431cc7xowdav" path="res://addons/new_theme.tres" id="4_r2fws"]
 [ext_resource type="FontFile" uid="uid://b54m8n1w2ouio" path="res://Assets/Fonts/Bungee-Regular.ttf" id="5_fliu1"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_5h02n"]
-font = ExtResource("5_fliu1")
-font_size = 50
-font_color = Color(0, 0, 0, 1)
-shadow_size = 10
-shadow_color = Color(1, 0.694118, 0.835294, 1)
 
 [sub_resource type="Image" id="Image_hwkvm"]
 data = {
@@ -1396,45 +1389,15 @@ offset_right = 1148.0
 offset_bottom = 650.0
 color = Color(1, 1, 1, 0)
 
-[node name="Label" type="Label" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -137.0
-offset_top = 69.0
-offset_right = 138.0
-offset_bottom = 128.0
-grow_horizontal = 2
-text = "Assessment"
-label_settings = SubResource("LabelSettings_5h02n")
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -100.5
-offset_top = 340.0
-offset_right = 100.5
-offset_bottom = 399.0
-grow_horizontal = 2
-text = "Games"
-label_settings = SubResource("LabelSettings_5h02n")
-horizontal_alignment = 1
-
 [node name="game_reach" type="Button" parent="." groups=["GameButtons"]]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -474.5
-offset_top = 174.0
-offset_right = -295.5
-offset_bottom = 239.0
+offset_left = -443.0
+offset_top = 171.0
+offset_right = -260.0
+offset_bottom = 236.0
 grow_horizontal = 2
 theme = ExtResource("4_r2fws")
 theme_override_fonts/font = SubResource("FontFile_o1ivk")
@@ -1445,10 +1408,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -250.0
-offset_top = 173.0
-offset_right = -98.0
-offset_bottom = 238.0
+offset_left = -217.0
+offset_top = 171.0
+offset_right = -65.0
+offset_bottom = 236.0
 grow_horizontal = 2
 theme = ExtResource("4_r2fws")
 theme_override_fonts/font = SubResource("FontFile_o1ivk")
@@ -1459,9 +1422,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -63.0
+offset_left = -14.0
 offset_top = 172.0
-offset_right = 89.0
+offset_right = 138.0
 offset_bottom = 237.0
 grow_horizontal = 2
 theme = ExtResource("4_r2fws")
@@ -1473,10 +1436,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -183.0
-offset_top = 295.0
-offset_right = -31.0
-offset_bottom = 361.0
+offset_left = -228.0
+offset_top = 291.0
+offset_right = -76.0
+offset_bottom = 357.0
 grow_horizontal = 2
 theme = ExtResource("4_r2fws")
 theme_override_fonts/font = SubResource("FontFile_o1ivk")
@@ -1487,10 +1450,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 28.0
-offset_top = 293.0
-offset_right = 182.0
-offset_bottom = 358.0
+offset_left = -7.0
+offset_top = 291.0
+offset_right = 147.0
+offset_bottom = 356.0
 grow_horizontal = 2
 theme = ExtResource("4_r2fws")
 theme_override_fonts/font = SubResource("FontFile_o1ivk")
@@ -1540,21 +1503,11 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontFile_o1ivk")
 theme_override_font_sizes/font_size = 20
 
-[node name="platformer" type="Button" parent="."]
-layout_mode = 0
-offset_left = 710.0
-offset_top = 175.0
-offset_right = 860.0
-offset_bottom = 235.0
-theme = ExtResource("4_r2fws")
-theme_override_fonts/font = SubResource("FontFile_o1ivk")
-text = "Jumpify"
-
 [node name="fruit_catcher" type="Button" parent="."]
 layout_mode = 0
-offset_left = 902.0
+offset_left = 760.0
 offset_top = 174.0
-offset_right = 1089.0
+offset_right = 947.0
 offset_bottom = 236.0
 theme = ExtResource("4_r2fws")
 theme_override_fonts/font = SubResource("FontFile_o1ivk")
@@ -1596,6 +1549,14 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("5_fliu1")
 text = "Right Hand"
 
+[node name="Switch_3D" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 427.0
+offset_right = 652.0
+offset_bottom = 458.0
+text = "SWITCH TO 3D MODE"
+
 [connection signal="pressed" from="game_reach" to="." method="_on_game_reach_pressed"]
 [connection signal="pressed" from="game_flappy" to="." method="_on_game_flappy_pressed"]
 [connection signal="pressed" from="game_pingpong" to="." method="_on_game_pingpong_pressed"]
@@ -1603,5 +1564,7 @@ text = "Right Hand"
 [connection signal="pressed" from="Results" to="." method="_on_results_pressed"]
 [connection signal="pressed" from="Exit_button" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="logout" to="." method="_on_logout_pressed"]
-[connection signal="pressed" from="platformer" to="." method="_on_platformer_pressed"]
 [connection signal="pressed" from="fruit_catcher" to="." method="_on_fruit_catcher_pressed"]
+[connection signal="pressed" from="HandSelectionPopup/HBoxContainer/LeftButton" to="." method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="HandSelectionPopup/HBoxContainer/RightButton" to="." method="_on_RightButton_pressed"]
+[connection signal="toggled" from="Switch_3D" to="." method="_on_switch_3d_toggled"]

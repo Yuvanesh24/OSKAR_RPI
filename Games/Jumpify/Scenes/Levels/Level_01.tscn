@@ -11,7 +11,7 @@
 [ext_resource type="FontFile" uid="uid://b54m8n1w2ouio" path="res://Assets/Fonts/Bungee-Regular.ttf" id="9_uy5mx"]
 [ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Games/Jumpify/Scenes/Prefabs/Coin.tscn" id="10_uy5mx"]
 [ext_resource type="Texture2D" uid="uid://chno14wxf5g0e" path="res://Assets/scoring_system/Background.png" id="11_pvb7v"]
-[ext_resource type="Theme" uid="uid://b07twninll6cv" path="res://addons/new_theme.tres" id="12_t1ylk"]
+[ext_resource type="Theme" uid="uid://b431cc7xowdav" path="res://addons/new_theme.tres" id="12_t1ylk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gs0qk"]
 texture = ExtResource("5_wqbaa")

@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://Games/ping_pong/scripts/timer_label.gd" id="10_g2848"]
 [ext_resource type="Texture2D" uid="uid://bl10pbij7t6ge" path="res://Assets/Paddle/paddle.png" id="10_rod25"]
 [ext_resource type="Texture2D" uid="uid://chno14wxf5g0e" path="res://Assets/scoring_system/Background.png" id="11_5ysxo"]
-[ext_resource type="Theme" uid="uid://b07twninll6cv" path="res://addons/new_theme.tres" id="12_heaje"]
+[ext_resource type="Theme" uid="uid://b431cc7xowdav" path="res://addons/new_theme.tres" id="12_heaje"]
 [ext_resource type="Texture2D" uid="uid://g3xuhbbrhthp" path="res://Games/random_reach/Sprites/medal.webp" id="13_m35pc"]
 [ext_resource type="Texture2D" uid="uid://cwqtv62nto34u" path="res://Assets/Terrian/Terrain (16x16).png" id="14_pu5g1"]
 [ext_resource type="FontFile" uid="uid://b54m8n1w2ouio" path="res://Assets/Fonts/Bungee-Regular.ttf" id="15_koe3q"]

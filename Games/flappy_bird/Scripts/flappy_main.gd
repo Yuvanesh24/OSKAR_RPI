@@ -37,7 +37,6 @@ signal game_started
     "game_over_label": $CanvasLayer/GameOverLabel,
     "time_label": $CanvasLayer/TimerSelectorPanel/TimeSelector,
     "top_score_label": $CanvasLayer/TextureRect/TopScoreLabel,
-    "mode_selection": $ModeSelection,
     "warning_window":$Window
 }
 
@@ -56,8 +55,6 @@ signal game_started
     "sub_five_btn": $CanvasLayer/TimerSelectorPanel/HBoxContainer2/SubFiveButton,
     "logout_button": $CanvasLayer/GameOverLabel/LogoutButton,
     "retry_button": $CanvasLayer/GameOverLabel/RetryButton,
-    "2d_mode": $"ModeSelection/2D_mode",
-    "3d_mode": $"ModeSelection/3D_mode",
     "do_assess":$Window/HBoxContainer/do_asses,
     "close_assess":$Window/HBoxContainer/close_asses,
     "adapt_prom":$AdaptRom
@@ -114,6 +111,7 @@ func _ready() -> void:
     _connect_signals()
     _setup_logging()
     _initialize_scoring()
+    _auto_select_mode()
 
 func _initialize_game_state() -> void:
     game_running = false
@@ -472,21 +470,27 @@ func _on_log_timer_timeout() -> void:
             str(pos_x), str(pos_y), str(pos_z), str(target_x), str(target_y), str(target_z),
             str(game_x), str(game_y), str(game_z), str(pause_state)
         ]))
+        
+func _auto_select_mode() -> void:
+    # Automatically set mode based on GlobalSignals
+    if GlobalSignals.selected_game_mode == "3D":
+        _set_3d_mode()
+    else:
+        _set_2d_mode()
 
-func _on_2d_mode_pressed() -> void:
+# Replace your existing mode functions with these:
+func _set_2d_mode() -> void:
     is_3d_mode = false
     _update_game_name()  # Update game name for file saving
-    _ui_nodes.mode_selection.hide()
-    _panel_nodes.timer_panel.show()  # Show timer panel after mode selection
+    _panel_nodes.timer_panel.show()  # Show timer panel directly
     print("2D mode selected - game_name:", game_name)
 
-func _on_3d_mode_pressed() -> void:
+func _set_3d_mode() -> void:
     is_3d_mode = true
     _update_game_name()  # Update game name for file saving
-    _ui_nodes.mode_selection.hide()
-    _panel_nodes.timer_panel.show()  # Show timer panel after mode selection
+    _panel_nodes.timer_panel.show()  # Show timer panel directly
     print("3D mode selected - game_name:", game_name)
-
+    
 func _on_do_asses_pressed() -> void:
     get_tree().change_scene_to_file("res://Games/assessment/workspace.tscn")
 

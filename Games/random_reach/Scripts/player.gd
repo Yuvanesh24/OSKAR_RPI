@@ -122,7 +122,16 @@ func _ready() -> void:
     _connect_signals()
     _initialize_game_state()
     _setup_logging()
+    _auto_select_mode() 
     
+    
+func _auto_select_mode() -> void:
+    # Automatically set mode based on GlobalSignals
+    if GlobalSignals.selected_game_mode == "3D":
+        _set_3d_mode()
+    else:
+        _set_2d_mode()
+
 
 func _load_debug_config() -> void:
     debug = JSON.parse_string(FileAccess.get_file_as_string(path))['debug']
@@ -506,25 +515,21 @@ func _on_udp_timer_timeout() -> void:
 
 func _on_dummy_timeout() -> void:
     pass
-
-
-func _on_2d_mode_pressed() -> void:
+    
+func _set_2d_mode() -> void:
     is_3d_mode = false
     _update_game_name()  
-    _ui_nodes.mode_selection.hide()
     _panel_nodes.timer_panel.show()
     _ui_nodes.bg_2d.visible = true
     _ui_nodes.bg_3d.visible = false
 
-    
-
-func _on_3d_mode_pressed() -> void:
+func _set_3d_mode() -> void:
     is_3d_mode = true
     _update_game_name()  
-    _ui_nodes.mode_selection.hide()
     _panel_nodes.timer_panel.show()
     _ui_nodes.bg_3d.visible = true
     _ui_nodes.bg_2d.visible = false
+
     
     
 func _update_game_name() -> void:

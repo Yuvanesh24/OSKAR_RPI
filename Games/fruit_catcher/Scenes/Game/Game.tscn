@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://c6b4darsin5cb" path="res://Games/fruit_catcher/assets/bgm_action_5.mp3" id="4_ln2h6"]
 [ext_resource type="AudioStream" uid="uid://nunov43qa4b0" path="res://Games/fruit_catcher/assets/spell1_0.wav" id="5_y3kpf"]
 [ext_resource type="Texture2D" uid="uid://chno14wxf5g0e" path="res://Assets/scoring_system/Background.png" id="6_jldhi"]
-[ext_resource type="Theme" uid="uid://b07twninll6cv" path="res://addons/new_theme.tres" id="7_5dybn"]
+[ext_resource type="Theme" uid="uid://b431cc7xowdav" path="res://addons/new_theme.tres" id="7_5dybn"]
 [ext_resource type="FontFile" uid="uid://b54m8n1w2ouio" path="res://Assets/Fonts/Bungee-Regular.ttf" id="8_5dybn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d32l4"]

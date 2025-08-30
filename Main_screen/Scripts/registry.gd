@@ -5,6 +5,7 @@ const ADMIN_PASSWORD = "CMC"
 const PATIENT_REGISTER_PATH = "res://Main_screen/patient_register.tres"
 const MAIN_SCENE_PATH = "res://Main_screen/Scenes/main.tscn"
 const SELECT_GAME_SCENE_PATH = preload("res://Main_screen/Scenes/select_game.tscn")
+const MODE_SELECTION = preload("res://Main_screen/Scenes/mode.tscn")
 
 # Enums for better type safety
 enum Gender { MALE, FEMALE, OTHERS, UNSPECIFIED = -1 }
@@ -225,7 +226,7 @@ func _on_login_button_pressed() -> void:
     GlobalSignals.affected_hand = current_patient['affected_hand']
     
     _save_patient_data()
-    get_tree().change_scene_to_packed(SELECT_GAME_SCENE_PATH)
+    get_tree().change_scene_to_packed(MODE_SELECTION)
 
 # Window management
 func _on_auth_close_requested() -> void:

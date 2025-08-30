@@ -7,6 +7,7 @@ signal SignalBus
 @export var global_scalar_x:float = 1.0
 @export var global_scalar_y:float = 1.0
 @export var assessment_done: bool = false
+@export var selected_game_mode: String = "2D"
 
 @export var inflated_workspace: PackedVector2Array
 

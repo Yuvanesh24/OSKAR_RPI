@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bngcn6oh2q8e8" path="res://Assets/Background/grass-2.png" id="2_o6ju6"]
 [ext_resource type="Texture2D" uid="uid://cwqtv62nto34u" path="res://Assets/Terrian/Terrain (16x16).png" id="3_o6ju6"]
 [ext_resource type="Texture2D" uid="uid://chno14wxf5g0e" path="res://Assets/scoring_system/Background.png" id="5_j2tbw"]
-[ext_resource type="Theme" uid="uid://b07twninll6cv" path="res://addons/new_theme.tres" id="7_xn8jd"]
+[ext_resource type="Theme" uid="uid://b431cc7xowdav" path="res://addons/new_theme.tres" id="7_xn8jd"]
 [ext_resource type="Texture2D" uid="uid://b1ifscbhf76bo" path="res://Assets/scoring_system/medal.webp" id="8_3vvhp"]
 [ext_resource type="PackedScene" uid="uid://c6bg6bhe2v1e3" path="res://Games/random_reach/scenes/home_pos.tscn" id="9_72q7b"]
 [ext_resource type="Texture2D" uid="uid://cklorvnyyai30" path="res://Games/random_reach/Sprites/AppleStatic.png" id="10_kaukv"]
@@ -2131,44 +2131,6 @@ theme_override_fonts/font = SubResource("FontFile_o1ivk")
 text = "Adapt PROM"
 flat = true
 
-[node name="ModeSelection" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 449.0
-offset_top = 243.0
-offset_right = 659.0
-offset_bottom = 381.0
-texture = ExtResource("5_j2tbw")
-expand_mode = 1
-
-[node name="2D_mode" type="Button" parent="ModeSelection"]
-layout_mode = 0
-offset_left = 24.3492
-offset_top = 68.6517
-offset_right = 104.349
-offset_bottom = 103.652
-theme_override_fonts/font = SubResource("FontFile_o1ivk")
-text = "2D"
-
-[node name="3D_mode" type="Button" parent="ModeSelection"]
-layout_mode = 0
-offset_left = 108.0
-offset_top = 69.0
-offset_right = 189.0
-offset_bottom = 103.0
-theme_override_fonts/font = SubResource("FontFile_o1ivk")
-text = "3D"
-
-[node name="Label" type="Label" parent="ModeSelection"]
-layout_mode = 0
-offset_left = 30.3361
-offset_top = 28.2249
-offset_right = 186.336
-offset_bottom = 62.2249
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = SubResource("FontFile_o1ivk")
-theme_override_font_sizes/font_size = 20
-text = "Select mode !"
-
 [node name="Window" type="Window" parent="."]
 initial_position = 2
 size = Vector2i(610, 200)
@@ -2211,7 +2173,5 @@ text = "Close"
 [connection signal="pressed" from="Button" to="Player" method="_on_button_pressed"]
 [connection signal="pressed" from="logout" to="Player" method="_on_logout_pressed"]
 [connection signal="toggled" from="AdaptRom" to="Player" method="_on_adapt_rom_toggled"]
-[connection signal="pressed" from="ModeSelection/2D_mode" to="Player" method="_on_2d_mode_pressed"]
-[connection signal="pressed" from="ModeSelection/3D_mode" to="Player" method="_on_3d_mode_pressed"]
 [connection signal="pressed" from="Window/HBoxContainer/do_asses" to="Player" method="_on_do_asses_pressed"]
 [connection signal="pressed" from="Window/HBoxContainer/close_asses" to="Player" method="_on_close_asses_pressed"]

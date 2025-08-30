@@ -3,26 +3,19 @@ extends Control
 @onready var patient_db: PatientDetails = load("res://Main_screen/patient_register.tres")
 @onready var logged_in_as = $LoggedInAs
 @onready var training_label = $TrainingLabel
-@onready var left_button = $HandSelectionPopup/HBoxContainer/LeftButton
-@onready var right_button = $HandSelectionPopup/HBoxContainer/RightButton
 
 # Preload all scenes at start (loads into memory for faster switching)
 var random_reach_scene = preload("res://Games/random_reach/scenes/random_reach.tscn")
 var flappy_scene = preload("res://Games/flappy_bird/Scenes/flappy_main.tscn")
 var pingpong_scene = preload("res://Games/ping_pong/Scenes/PingPong.tscn")
-var jumpify = preload("res://Games/Jumpify/Scenes/Levels/Level_01.tscn")
 var fruit_catcher = preload("res://Games/fruit_catcher/Scenes/Game/Game.tscn")
 var assessment_scene = preload("res://Games/assessment/workspace.tscn")
 var results_scene = preload("res://Results/scenes/user_progress.tscn")
 var main_menu_scene = preload("res://Main_screen/Scenes/main.tscn")
-
 var endgame : bool
 
 
 func _ready() -> void:
-    left_button.pressed.connect(_on_LeftButton_pressed)
-    right_button.pressed.connect(_on_RightButton_pressed)
-    
     logged_in_as.text = "Patient: " + patient_db.current_patient_id
     var affected_hand = GlobalSignals.affected_hand
     
@@ -83,8 +76,9 @@ func _on_exit_button_pressed() -> void:
     GlobalSignals.affected_hand = ""
     get_tree().quit()
 
-func _on_platformer_pressed() -> void:
-    get_tree().change_scene_to_packed(jumpify)
-
 func _on_fruit_catcher_pressed() -> void:
     get_tree().change_scene_to_packed(fruit_catcher)
+
+
+func _on_switch_3d_toggled(toggled_on: bool) -> void:
+     get_tree().change_scene_to_file("res://Main_screen/Scenes/3d_games.tscn")
