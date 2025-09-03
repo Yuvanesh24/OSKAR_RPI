@@ -5,9 +5,9 @@ extends Control
 var player_node: Node
 
 func _ready():
-    # Find the player node (adjust path as needed)
-    player_node = $"../../Player" # Adjust this path to your player
-    
+	# Find the player node (adjust path as needed)
+	player_node = $"../../Player" # Adjust this path to your player
+	
 func _process(_delta):
-    if player_node:
-        score_label.text = "x %d" % player_node.score
+	if player_node:
+		score_label.text = "x %d" % player_node.score
