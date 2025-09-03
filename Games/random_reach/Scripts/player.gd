@@ -26,7 +26,6 @@ const FIVE_MINUTES = 300
     "time_label": $"../TileMap/CanvasLayer/TimerSelectorPanel/TimeSelector",
     "top_score_label":$"../TileMap/CanvasLayer/TopScoreLabel",
     "color_rect": $"../TileMap/CanvasLayer/ColorRect",
-    "mode_selection": $"../ModeSelection",
     "warning_window":$"../Window",
     "bg_2d":$"../2DRR",
     "bg_3d":$"../3DRR"
@@ -52,8 +51,6 @@ const FIVE_MINUTES = 300
     "add_five_btn": $"../TileMap/CanvasLayer/TimerSelectorPanel/HBoxContainer/AddFiveButton",
     "sub_one_btn": $"../TileMap/CanvasLayer/TimerSelectorPanel/HBoxContainer2/SubOneButton",
     "sub_five_btn": $"../TileMap/CanvasLayer/TimerSelectorPanel/HBoxContainer2/SubFiveButton",
-    "2d_mode": $"../ModeSelection/2D_mode",
-    "3d_mode": $"../ModeSelection/3D_mode",
     "close_assess": $"../Window/HBoxContainer/close_asses",
     "do_assess": $"../Window/HBoxContainer/do_asses",
     "adapt_prom": $"../AdaptRom"
@@ -196,7 +193,10 @@ func _update_player_position() -> void:
     if debug_mode:
         network_position = get_global_mouse_position()
     elif adapt_toggle:
-        network_position = GlobalScript.scaled_network_position
+        if is_3d_mode:
+           network_position = GlobalScript.scaled_network_position3D
+        else:
+            network_position = GlobalScript.scaled_network_position
     else:
         network_position = GlobalScript.network_position3D if is_3d_mode else GlobalScript.network_position
     if network_position != Vector2.ZERO:
@@ -491,7 +491,10 @@ func _on_button_pressed() -> void:
 func _on_logout_pressed() -> void:
     GlobalTimer.stop_timer()
     GlobalSignals.enable_game_buttons(true)
-    get_tree().change_scene_to_file("res://Main_screen/Scenes/select_game.tscn")
+    if not is_3d_mode:
+        get_tree().change_scene_to_file("res://Main_screen/Scenes/select_game.tscn")
+    else:
+        get_tree().change_scene_to_file("res://Main_screen/Scenes/3d_games.tscn")
 
 func _on_adapt_rom_toggled(toggled_on: bool) -> void:
     if toggled_on and not GlobalSignals.assessment_done:

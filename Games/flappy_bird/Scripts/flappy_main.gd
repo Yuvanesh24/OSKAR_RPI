@@ -450,8 +450,11 @@ func scored() -> void:
     _ui_nodes.score_label.text = str(score)
 
 func _on_logout_pressed() -> void:
-    get_tree().change_scene_to_file("res://Main_screen/Scenes/select_game.tscn")
     GlobalTimer.stop_timer()
+    if not is_3d_mode:
+        get_tree().change_scene_to_file("res://Main_screen/Scenes/select_game.tscn")
+    else:
+        get_tree().change_scene_to_file("res://Main_screen/Scenes/3d_games.tscn")
 
 func _notification(what: int) -> void:
     if what == NOTIFICATION_WM_CLOSE_REQUEST:

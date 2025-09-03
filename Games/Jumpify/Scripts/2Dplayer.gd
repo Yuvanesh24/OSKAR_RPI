@@ -34,6 +34,7 @@ var is_paused = false
 var pause_state = 1
 var adapt_toggle: bool = false
 
+
 # Status tracking variables
 var coin_collected_timer = 0.0
 var coin_missed_timer = 0.0
@@ -399,7 +400,7 @@ func show_game_over() -> void:
     
 func _on_logout_button_pressed() -> void:
     get_tree().paused = false
-    get_tree().change_scene_to_file("res://Main_screen/Scenes/select_game.tscn")
+    get_tree().change_scene_to_file("res://Main_screen/Scenes/3d_games.tscn")
 
 func _on_retry_button_pressed() -> void:
     get_tree().paused = false

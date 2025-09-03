@@ -27,7 +27,10 @@ func _physics_process(delta: float) -> void:
     if debug_mode:
         network_position = get_global_mouse_position()
     elif adapt_toggle:
-        network_position = GlobalScript.scaled_network_position
+        if flappy.is_3d_mode:
+           network_position = GlobalScript.scaled_network_position3D
+        else:
+            network_position = GlobalScript.scaled_network_position
     else:
         network_position = GlobalScript.network_position3D if flappy.is_3d_mode else GlobalScript.network_position
 

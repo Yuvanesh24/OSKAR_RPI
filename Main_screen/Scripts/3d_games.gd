@@ -58,6 +58,7 @@ func _on_logout_pressed() -> void:
     get_tree().change_scene_to_file("res://Main_screen/Scenes/main.tscn")
 
 func _on_2d_mode_toggled(toggled_on: bool) -> void:
+   GlobalSignals.selected_game_mode = "2D"
    get_tree().change_scene_to_file("res://Main_screen/Scenes/select_game.tscn")
 
 

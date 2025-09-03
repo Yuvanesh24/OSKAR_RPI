@@ -81,4 +81,5 @@ func _on_fruit_catcher_pressed() -> void:
 
 
 func _on_switch_3d_toggled(toggled_on: bool) -> void:
+     GlobalSignals.selected_game_mode = "3D"
      get_tree().change_scene_to_file("res://Main_screen/Scenes/3d_games.tscn")

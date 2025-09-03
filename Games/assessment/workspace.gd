@@ -22,11 +22,17 @@ extends Node2D
 @onready var training_pols
 @onready var axdir
 @onready var azdir
+@onready var aydir
 @onready var txdir
 @onready var tzdir
+@onready var tydir
 @onready var rect_points
 @onready var button_focus:bool = false
 @onready var workspace_file
+
+
+@onready var workspace_2d = $VBoxContainer
+@onready var workspace_3d = $"3D_workspace"
 
 var received_message
 var thread: Thread
@@ -100,6 +106,7 @@ func parse_and_calculate_area(polygon_str: String) -> float:
         area -= points[j].x * points[i].y
     area = abs(area) * 0.5
     return area
+    
 func _ready():
     GlobalSignals.assessment_done = false
     # Generate 100 random points for demonstration
@@ -108,6 +115,12 @@ func _ready():
         
     active_workspace = PackedVector2Array(Geometry2D.convex_hull(active_workspace))
     inflated_workspace = Geometry2D.convex_hull(inflate_polygon(active_workspace, -20))
+    
+    var offset_y = -85
+    for i in range(active_workspace.size()):
+        active_workspace[i].y += offset_y
+    for i in range(inflated_workspace.size()):
+        inflated_workspace[i].y += offset_y
     
     _current_line = Line2D.new()
     add_child(_current_line)
@@ -123,8 +136,11 @@ func _process(delta: float) -> void:
 
     if _temp_message == "starting":
         start_drawing = true
-    
-    network_position = GlobalScript.network_position
+        
+    if GlobalSignals.selected_game_mode == "2D":
+        network_position = GlobalScript.network_position
+    else:
+        network_position = GlobalScript.workspace
 
     if network_position != Vector2.ZERO and start_drawing:
         _current_line.width = 5
@@ -162,17 +178,37 @@ func calculate_polygon_area(points: Array) -> float:
     
 func get_xy_cm():
     active_pols = get_rect(active_workspace)
-    axdir = abs(active_pols[0][0]-active_pols[1][0]) / GlobalScript.PLAYER_POS_SCALER_X*100
-    azdir = abs(active_pols[0][1]-active_pols[1][1]) / GlobalScript.PLAYER_POS_SCALER_Z*100
-
-    training_pols = get_rect(inflated_workspace)
-    txdir = abs(training_pols[0][0]-training_pols[1][0]) / GlobalScript.PLAYER_POS_SCALER_X*100
-    tzdir = abs(training_pols[0][1]-training_pols[1][1]) / GlobalScript.PLAYER_POS_SCALER_Z*100
     
-    $VBoxContainer/HBoxContainer/axval.text = String("%.2f" % axdir)
-    $VBoxContainer/HBoxContainer3/azval.text = String("%.2f" % azdir)
-    $VBoxContainer/HBoxContainer2/txval.text = String("%.2f" % txdir)
-    $VBoxContainer/HBoxContainer4/tzval.text = String("%.2f" % tzdir)
+    if GlobalSignals.selected_game_mode == "2D":
+      axdir = abs(active_pols[0][0]-active_pols[1][0]) / GlobalScript.PLAYER_POS_SCALER_X*100
+      azdir = abs(active_pols[0][1]-active_pols[1][1]) / GlobalScript.PLAYER_POS_SCALER_Z*100
+
+      training_pols = get_rect(inflated_workspace)
+      txdir = abs(training_pols[0][0]-training_pols[1][0]) / GlobalScript.PLAYER_POS_SCALER_X*100
+      tzdir = abs(training_pols[0][1]-training_pols[1][1]) / GlobalScript.PLAYER_POS_SCALER_Z*100
+      
+      workspace_3d.hide()
+      workspace_2d.visible = true
+      $VBoxContainer/HBoxContainer/axval.text = String("%.2f cm" % axdir)
+      $VBoxContainer/HBoxContainer3/azval.text = String("%.2f cm" % azdir)
+      $VBoxContainer/HBoxContainer2/txval.text = String("%.2f cm" % txdir)
+      $VBoxContainer/HBoxContainer4/tzval.text = String("%.2f cm" % tzdir)
+      
+    
+    else:
+      axdir = abs(active_pols[0][0]-active_pols[1][0]) / GlobalScript.PLAYER_POS_SCALER_X*100
+      aydir = abs(active_pols[0][1]-active_pols[1][1]) / GlobalScript.PLAYER3D_POS_SCALER_Y*100
+
+      training_pols = get_rect(inflated_workspace)
+      txdir = abs(training_pols[0][0]-training_pols[1][0]) / GlobalScript.PLAYER_POS_SCALER_X*100
+      tydir = abs(training_pols[0][1]-training_pols[1][1]) / GlobalScript.PLAYER3D_POS_SCALER_Y*100
+      
+      workspace_2d.hide()
+      workspace_3d.visible = true
+      $"3D_workspace/HBoxContainer/axval".text = String("%.2f cm" % axdir)
+      $"3D_workspace/HBoxContainer3/ayval".text = String("%.2f cm" % aydir)
+      $"3D_workspace/HBoxContainer2/txval".text = String("%.2f cm" % txdir)
+      $"3D_workspace/HBoxContainer4/tyval".text = String("%.2f cm" % tydir)
     
 func inflate_polygon(polygon: Array, distance: float) -> Array:
     var inflated_polygon = []
@@ -242,7 +278,10 @@ func _on_clear_pressed() -> void:
 
 func _on_select_game_pressed() -> void:
     GlobalSignals.inflated_workspace = inflated_workspace
-    get_tree().change_scene_to_file("res://Main_screen/Scenes/select_game.tscn")
+    if GlobalSignals.selected_game_mode == "2D":
+      get_tree().change_scene_to_file("res://Main_screen/Scenes/select_game.tscn")
+    else:
+        get_tree().change_scene_to_file("res://Main_screen/Scenes/3d_games.tscn")
     
 func get_rect(points):
     var min_x = points[0].x

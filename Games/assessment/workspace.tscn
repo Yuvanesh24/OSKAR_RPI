@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bn0in381lxfeb"]
+[gd_scene load_steps=6 format=3 uid="uid://bn0in381lxfeb"]
 
 [ext_resource type="Script" uid="uid://cedht487nl6p3" path="res://Games/assessment/workspace.gd" id="1_vm5ig"]
-[ext_resource type="Texture2D" uid="uid://b4a670lt0tvg1" path="res://Assets/Background/Yellow.png" id="2_vx1gl"]
+[ext_resource type="Theme" uid="uid://dd5ut6ixbb3rj" path="res://Assets/Background/button.tres" id="2_3kta3"]
+[ext_resource type="FontFile" uid="uid://b54m8n1w2ouio" path="res://Assets/Fonts/Bungee-Regular.ttf" id="2_gocbw"]
 [ext_resource type="Texture2D" uid="uid://dy8y607pjywvd" path="res://Assets/pp_assets/arts/Ball.png" id="3_jae2j"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_lqn52"]
 
 [node name="workspace" type="Node2D"]
 script = ExtResource("1_vm5ig")
@@ -14,15 +17,17 @@ offset_left = -136.0
 offset_top = -79.0
 offset_right = 1285.0
 offset_bottom = 732.0
-texture = ExtResource("2_vx1gl")
+texture = SubResource("CanvasTexture_lqn52")
 stretch_mode = 1
 
 [node name="StopButton" type="Button" parent="."]
 texture_filter = 1
-offset_left = 339.0
-offset_top = 598.0
-offset_right = 443.0
-offset_bottom = 638.0
+offset_left = 567.0
+offset_top = 549.0
+offset_right = 711.0
+offset_bottom = 619.0
+theme = ExtResource("2_3kta3")
+theme_override_fonts/font = ExtResource("2_gocbw")
 text = "Calc.  AW"
 
 [node name="set_orgin" type="Button" parent="."]
@@ -37,29 +42,36 @@ text = "Set orgin
 
 [node name="Enter" type="Button" parent="."]
 texture_filter = 1
-offset_left = 670.0
-offset_top = 597.0
-offset_right = 779.0
-offset_bottom = 635.0
+offset_left = 823.0
+offset_top = 367.0
+offset_right = 968.0
+offset_bottom = 431.0
+theme = ExtResource("2_3kta3")
+theme_override_fonts/font = ExtResource("2_gocbw")
 text = "Save"
 
 [node name="start" type="Button" parent="."]
 texture_filter = 1
-offset_left = 507.0
-offset_top = 599.0
-offset_right = 608.0
-offset_bottom = 638.0
+offset_left = 400.0
+offset_top = 550.0
+offset_right = 542.0
+offset_bottom = 620.0
+theme = ExtResource("2_3kta3")
+theme_override_fonts/font = ExtResource("2_gocbw")
 text = "Start"
 
 [node name="Clear" type="Button" parent="."]
 texture_filter = 1
-offset_left = 1066.0
-offset_top = 599.0
-offset_right = 1140.0
-offset_bottom = 639.0
+offset_left = 973.0
+offset_top = 368.0
+offset_right = 1114.0
+offset_bottom = 431.0
+theme = ExtResource("2_3kta3")
+theme_override_fonts/font = ExtResource("2_gocbw")
 text = "Clear"
 
 [node name="Reset" type="Button" parent="."]
+visible = false
 texture_filter = 1
 offset_left = 15.0
 offset_top = 602.0
@@ -68,10 +80,12 @@ offset_bottom = 642.0
 text = "Set-Zero"
 
 [node name="SelectGame" type="Button" parent="."]
-offset_left = 1079.0
-offset_top = 16.0
-offset_right = 1129.0
-offset_bottom = 48.0
+offset_left = 1011.0
+offset_top = 30.0
+offset_right = 1122.0
+offset_bottom = 86.0
+theme = ExtResource("2_3kta3")
+theme_override_fonts/font = ExtResource("2_gocbw")
 text = "Game
 "
 
@@ -83,14 +97,15 @@ scale = Vector2(0.533334, 0.533334)
 texture = ExtResource("3_jae2j")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 952.0
-offset_top = 86.0
-offset_right = 1142.0
-offset_bottom = 244.0
+offset_left = 865.0
+offset_top = 203.0
+offset_right = 1101.0
+offset_bottom = 361.0
 
 [node name="AW" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
 text = "Active workspace (AW)"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -99,17 +114,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "X Dir"
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "X Dir: "
 
 [node name="axval" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
 text = "0.0"
-
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "cm"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -117,21 +129,19 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Z Dir"
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "Z Dir: "
 
 [node name="azval" type="Label" parent="VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
 text = "0.0"
-
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "cm"
 
 [node name="TW" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
 text = "Training workspace (TW)"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
@@ -140,17 +150,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "X Dir"
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "X Dir: "
 
 [node name="txval" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
 text = "0.0"
-
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "cm"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -158,17 +165,93 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Z Dir"
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "Z Dir: "
 
 [node name="tzval" type="Label" parent="VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
 text = "0.0"
 
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer4"]
+[node name="3D_workspace" type="VBoxContainer" parent="."]
+visible = false
+offset_left = 865.0
+offset_top = 203.0
+offset_right = 1101.0
+offset_bottom = 361.0
+
+[node name="AW" type="Label" parent="3D_workspace"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "cm"
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "Active workspace (AW)"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="3D_workspace"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="3D_workspace/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "X Dir: "
+
+[node name="axval" type="Label" parent="3D_workspace/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "0.0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="3D_workspace"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="3D_workspace/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "Y Dir: "
+
+[node name="ayval" type="Label" parent="3D_workspace/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "0.0"
+
+[node name="TW" type="Label" parent="3D_workspace"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "Training workspace (TW)"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="3D_workspace"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="3D_workspace/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "X Dir: "
+
+[node name="txval" type="Label" parent="3D_workspace/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "0.0"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="3D_workspace"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="3D_workspace/HBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "Y Dir: "
+
+[node name="tyval" type="Label" parent="3D_workspace/HBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gocbw")
+text = "0.0"
 
 [node name="SaveDialogBox" type="Window" parent="."]
 auto_translate_mode = 1

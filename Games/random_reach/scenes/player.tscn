@@ -74,12 +74,10 @@ script = ExtResource("1_w5ee0")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-0.666667, -0.166665)
-scale = Vector2(0.286458, 0.361979)
+position = Vector2(-0.333335, 0.333331)
+scale = Vector2(0.432292, 0.380208)
 sprite_frames = SubResource("SpriteFrames_dlft7")
 animation = &"sheep"
-frame = 4
-frame_progress = 0.246739
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_y05v0")
